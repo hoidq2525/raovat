@@ -6,13 +6,19 @@
       </div>
       <h2>Bạn muốn mua gì? {{findkeyword}}</h2>
       <div class="header__search text-center">
-        <input v-model="findkeyword" placeholder="Tìm kiếm nhà đất,xe cộ, ..." type="search" aria-label />
+        <input
+          v-model="findkeyword"
+          placeholder="Tìm kiếm nhà đất,xe cộ, ..."
+          type="search"
+          aria-label
+        />
         <span class="header__search__btn"></span>
         <a class="icon-search"></a>
       </div>
     </div>
     <main>
-      <div class="container main"></div>
+      <div class="container main">
+      </div>
     </main>
   </div>
 </template>
@@ -23,21 +29,19 @@ import siteConfig from "./../common/siteConfig";
 import { isEmptyObj } from "../common/helper";
 
 export default {
-  data(){
-    return{
-      findkeyword: '0',
-    }
+  data() {
+    return {
+      findkeyword: "0"
+    };
   },
   watch: {
-     findkeyword: function(val) {
-         this.findkeyword = val
-        this.FindValue(val);
-        },
-       
+    findkeyword: function(val) {
+      this.findkeyword = val;
+      this.FindValue(val);
+    }
   },
-  methods:{
-     async FindValue(q) {
-       
+  methods: {
+    async FindValue(q) {
       //  var config = {
       //     headers: { 'access-control-allow-credentials': true,
       //     'access-control-allow-headers':'Content-Type,Authorization,X-Requested-With,X-CSRFToken,If-None-Match-,X-API-SOURCE',
@@ -47,7 +51,7 @@ export default {
       //   const { data } = await axios.get(`https://shopee.vn/api/v2/shop/get?username=${q}`);
       //   console.log(data)
       //   return data;
-    },
+    }
   },
   head: {
     title: "Báo Chí - Tạp Chí - Đọc Báo - Tuổi Trẻ Cuối Tuần - TTO",

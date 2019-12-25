@@ -14,13 +14,25 @@
           <h4 class="text-center">Đăng Nhập</h4>
           <form v-on:submit.prevent="handleSubmit">
             <div class="form-group">
-              <input v-model="email" aria-label type="text" class="form-control" placeholder="Email" />
+              <input
+                v-model="email"
+                aria-label
+                type="text"
+                class="form-control"
+                placeholder="Email"
+              />
             </div>
-             <label class="err">{{errEmail}}</label>
+            <label class="err">{{errEmail}}</label>
             <div class="form-group">
-              <input v-model="password" aria-label type="password" class="form-control" placeholder="Mật khẩu" />
+              <input
+                v-model="password"
+                aria-label
+                type="password"
+                class="form-control"
+                placeholder="Mật khẩu"
+              />
             </div>
-              <label class="err">{{errPassword}}</label>
+            <label class="err">{{errPassword}}</label>
             <div class="form-group pt-3 text-right">
               <a
                 href="#"
@@ -62,6 +74,7 @@
 </template>
 
 <script>
+const Cookie = process.client ? require('js-cookie') : undefined
 import axios from "axios";
 import { mapState } from "vuex";
 import { ValidateEmail, ValidateField } from "@/common/helper";
@@ -83,7 +96,7 @@ export default {
           if (response.authResponse) {
             FB.api("/me", function(response) {
               console.log(response);
-               bt.$store.dispatch("Call_Login", response.name);
+              bt.$store.dispatch("Call_Login", response.name);
             });
           }
         },
@@ -97,9 +110,20 @@ export default {
       this.errEmail = ValidateEmail(this.email, 8);
       this.errPassword = ValidateField(this.password, 8);
       if (this.errEmail == "" && this.errPassword == "") {
-         auth.$store.dispatch("Call_Login", this.email);
-         this.IsShow = false;
-         $(".modal-backdrop").removeClass("modal-backdrop fade show");
+        
+        setTimeout(() => {
+          // we simulate the async request with timeout.
+          const auth = {
+            accessToken: "someStringGotFromApiServiceWithAjax",
+            username: this.email.replace(/(@gmail.com)/gm, ``)
+          };
+          this.$store.commit("SetAuth", auth); // mutating to store for client rendering
+          Cookie.set("auth", auth); // saving token in cookie for server rendering
+          this.$router.push("/");
+        }, 1000);
+
+        this.IsShow = false;
+        $(".modal-backdrop").removeClass("modal-backdrop fade show");
       }
     }
   },

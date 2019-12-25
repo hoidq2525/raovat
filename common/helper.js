@@ -1,3 +1,13 @@
+// Usage:
+// !   utoa('✓ à la mode'); // 4pyTIMOgIGxhIG1vZGU=
+// !   atou('4pyTIMOgIGxhIG1vZGU='); // "✓ à la mode"
+
+export const utoa = (str) => {
+    return window.btoa(unescape(encodeURIComponent(str)));
+}
+export const atou = (str) => {
+    return decodeURIComponent(escape(window.atob(str)));
+}
 export function timeAgo(time) {
     const now = getTimestamp()
         // get timestamp millisecond
@@ -101,33 +111,3 @@ export const isEmptyObj = obj => {
     }
     return true;
 }
-export const getMainCate = (obj) => {
-    if (!isEmptyObj(obj)) {
-        var Cate = Object.values(obj);
-        return Cate[Math.floor(Math.random() * Cate.length)];
-    } else {
-        return '';
-    }
-}
-
-export const getMainThumb = (obj) => {
-    let thumb = '/img/default.jpg';
-    if (!isEmptyObj(obj)) {
-        obj.map((v, k) => {
-            !isEmptyObj(v.type) === 1 ? thumb = v.full_path : thumb = v.full_path;
-        })
-    }
-    return thumb;
-}
-export const setCookie = (c_name, value, exdays) => {
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + exdays);
-    var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
-    document.cookie = c_name + "=" + c_value;
-}
-
-export const getCookie = (c_name) => {
-        let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-        return value ? value[2] : null;
-    }
-    // export const

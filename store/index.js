@@ -1,63 +1,34 @@
+const cookieparser = process.server ? require('cookieparser') : undefined
 const axios = require("axios");
 
 //! 1  Create List State
 export const state = () => ({
-    islogin: false,
-    user: '',
+    auth: null
 });
-//! Khi xu ly su kien, call api thi se goi len mutation de set gia tri cho state
+//! 2 Khi xu ly su kien, call api thi se goi len mutation de set gia tri cho state
 export const mutations = {
-    CheckLogin: (state, playload) => {
-        state.islogin = playload;
-    },
-    SetUser: (state, playload) => {
-        state.user = playload;
-    },
+    SetAuth: (state, playload) => {
+        state.auth = playload;
+    }
 
 };
-//! Call api
+//! 3 Call api {nuxtServerInit : tự động render all data ra view-source ấn crtl+u để xem}
 export const actions = {
-    async nuxtServerInit({ commit, dispatch }, context) {
-        // ! gọi api lấy tin nổi bật 
-        // await dispatch('Call_');
-        await dispatch('CheckLoginsss')
+    async nuxtServerInit({ commit, dispatch }, { req }) {
+        //!Auto load khi tai lai trang
+        await dispatch('CheckLogin', req);
     },
-    // async Call_({ commit }) {
-    //     commit('CheckLogin', data.list)
-    // },
-    // async SetU({ commit }) {
-    //     commit('SetUser', data.list)
-    // },
-    async CheckLoginsss({ commit, rootState }, da) {
-        const { data } = await axios.post('https://app.fakejson.com/q/ATx0x3Ul?token=XnJ3cQn1HmuJPCuKna_rBg');
-        console.log(data)
-            // rootState.auth.loggedIn = true;
-            // rootState.auth.user = data.name;
-        commit("CheckLogin", true);
-        commit("SetUser", data.name);
-    },
-    async Logout({ commit, rootState }, da) {
-        commit("CheckLogin", false);
-        commit("SetUser", '');
-
-    },
-    async Call_Login({ commit, rootState }, da) {
-        console.log(da)
-        let payload = {
-            token: "XnJ3cQn1HmuJPCuKna_rBg",
-            data: {
-                name: da.replace(/(@gmail.com)/gm, ``),
-                email: da,
-                phone: "phoneHome",
-                _repeat: 1
+    //! Kiem tra login hay chua
+    async CheckLogin({ commit, rootState }, req) {
+        let auth = null
+        if (req.headers.cookie) {
+            const parsed = cookieparser.parse(req.headers.cookie)
+            try {
+                auth = JSON.parse(parsed.auth)
+            } catch (err) {
+                // No valid cookie found
             }
-        };
-        const { data } = await axios.post('https://app.fakejson.com/q', payload);
-        console.log(data)
-            // rootState.auth.loggedIn = true;
-            // rootState.auth.user = data.name;
-        commit("CheckLogin", true);
-        commit("SetUser", data.name);
+        }
+        commit('SetAuth', auth);
     },
-
 }
