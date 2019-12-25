@@ -1,0 +1,32 @@
+$c-header : linear-gradient(270deg, #9F041B 0%, #E32E32 100%);
+$c-gray : #EEEEEE;
+$c-footer : #2E82C7;
+$c-red : #EB233F;
+$c-green:  #2DCE89;
+$c-darkgray : #C4C4C4;
+$c-dark : #333333;
+$c-light : #ffffff;
+$c-black : #000000;
+$b-radius : 4px;
+$c-modal : #495057;
+.icon-search{
+  width: 32px;
+  height: 32px;
+  background: url("../img/icon/icon-search.png") center/24px 24px no-repeat;
+}
+.icon-facebook{
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  background: url("../img/icon/Facebook@2x.png") center/24px 24px no-repeat;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.icon-google{
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  display: inline-block;
+  background: url("../img/icon/Google@2x.png") center/24px 24px no-repeat;
+  vertical-align: middle;
+}

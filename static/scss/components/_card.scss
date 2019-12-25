@@ -1,0 +1,123 @@
+.card{
+  width: 175px;
+  border: none;
+  margin-bottom: 15px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  cursor: pointer;
+  &-img-top{
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    padding-bottom: 83%;
+    img{
+      position: absolute;
+      width: 175px;
+      height: 145px;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      transition: .3s ease;
+    }
+  }
+  &-body{
+    padding:10px 0;
+  }
+  &-title{
+    font-family: 'Roboto Slab',serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+    margin-bottom: 2px;
+  }
+  &-text{
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    display: inherit;
+    color: #666666;
+  }
+  &-status{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: $c-light;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    &::after{
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      font-family: "Font Awesome 5 Free",sans-serif;
+      font-weight: 700;
+      vertical-align: middle;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+    }
+    &.success::after{
+      content: "\f00c";
+      color: #2DCE89;
+    }
+    &.fail::after{
+      content: "\f00d";
+      color: #EB233F;
+    }
+    &.loading::after{
+      content: "\f110";
+      color: #FC7C5F;
+    }
+    &.calendar::after{
+      font-weight: 400;
+      content: "\f273";
+      color: #000000;
+    }
+  }
+  &-cost{
+    margin: 0px;
+    color: $c-red;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  &-img-overlay{
+    background: rgba(0,0,0,.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+    .card-list{
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      left: 10px;
+      display: flex;
+      flex-direction: column;
+      div {
+        margin: 3px 0;
+        cursor: pointer;
+        position: relative;
+        &:first-child{
+          left: 2px;
+        }
+      }
+      i{
+        color: $c-light;
+      }
+    }
+  }
+  &:hover &-img-overlay{
+    opacity: 1;
+    visibility: visible;
+
+  }
+  &:hover img{
+      transform: scale(1.2) rotate(5deg);
+  }
+}

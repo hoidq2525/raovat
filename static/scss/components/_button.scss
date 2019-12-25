@@ -1,0 +1,72 @@
+  .btn{
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 20px;
+  color: $c-light;
+  background: $c-darkgray;
+  cursor: pointer;
+  &:active,&:focus{
+    outline: none;
+  }
+  &:hover{
+    color: $c-light;
+  }
+  &--red{
+    background: $c-red;
+    color: $c-light;
+  }
+  &--darkgray{
+    background: #666666;
+    color: $c-light;
+  }
+  &--full{
+    width: 100%;
+  }
+  &--facebook{
+    text-align: left;
+    background: #4285F4;
+  }
+  &--google{
+    text-align: left;
+    background: #4285F4;
+  }
+  &--light{
+    background: $c-light;
+    border: 1px solid $c-darkgray;
+    color: $c-darkgray;
+    &:hover{
+      color: unset;
+    }
+  }
+  &--fixed{
+    width: 110px;
+  }
+  &--to-top{
+    display: none;
+    position: fixed;
+    bottom: 60px;
+    right: 60px;
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: $c-light;
+    background: $c-red;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    transition: .2s;
+    cursor: pointer;
+    &:hover{
+      transform: scale(1.2);
+    }
+    &.show{
+      display: block;
+    }
+  }
+}

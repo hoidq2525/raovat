@@ -1,0 +1,64 @@
+@import '../base/variables';
+body{
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+ul{
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+a{
+  color: $c-dark;
+}
+a:hover{
+  color: $c-dark;
+  text-decoration: none;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+input{
+  border: none;
+}
+input:focus{
+  outline: none;
+  border: none;
+}
+button:active,
+button:focus{
+  outline: none;
+}
+main{
+  padding-bottom: 20px;
+}
+.text--red{
+  color: $c-red;
+}
+
+.text--blue{
+  color: $c-footer;
+}
+.text--gray{
+  color: $c-darkgray;
+}
+.money{
+  &:after{
+    content: "đ";
+    vertical-align: super;
+    font-size: 12px;
+  }
+}
+.text--bold{
+  font-weight: 500!important;
+}
+.text--small{
+  font-size: 13px;
+}
+.text--lg{
+  font-size: 16px;
+  font-weight: 500;
+}

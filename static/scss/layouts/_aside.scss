@@ -1,0 +1,61 @@
+.aside{
+  &__user{
+    ul{
+        li{
+          position: relative;
+          margin: 5px 0;
+          padding: 7px 10px;
+          border-radius: 3px;
+          a{
+            font-size: 14px;
+            i{
+              padding-right: 15px;
+              transition: .2s;
+            }
+          }
+          &.active,&:hover{
+            background: #EEEEEE;
+            i{
+              transform: scale(1.3);
+            }
+            a{
+              color: $c-red;
+            }
+          }
+        }
+    }
+  }
+}
+.sticky-top{
+  top: 15px;
+}
+.user{
+  display: flex;
+  >a.inner-user{
+    flex: 0 0 70px;
+    img{
+      height: 70px;
+    }
+  }
+  &__info{
+    padding-left: 20px;
+    p{
+      margin-bottom: 0;
+      font-size: 13px; color: #7c7a7a;
+      span { color: #000; font-size: 15px;}
+    }
+  }
+  &__name{
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+
+}
+.user { padding: 20px 10px; background: #f2f2f2;}
+
+.level.gold { font-size: 13px; color: #efb30c;}
+.inner-user{ position: relative;}
+.inner-user i { position: absolute; right: -12px; top: -12px; }

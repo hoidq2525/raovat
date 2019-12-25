@@ -1,0 +1,29 @@
+.pretty.p-default input:checked~.state label:after {
+  border: 5px solid #EB233F;
+  background-color: #fff !important;
+}
+.pretty {
+  white-space: inherit;
+  line-height: 1.2;
+  margin-right: 0;
+}
+.pretty .state label{
+  text-indent: 0;
+  font-size: 15px;
+  padding-left: 1.5rem;
+}
+
+.pretty .state label:after,
+.pretty .state label:before{
+  top: 0;
+  border: 1px solid #EB233F;
+}
+.pretty.p-svg .state .svg {
+  top: calc((0% - (100% - 1em)) - -50%);
+}
+section{
+  .pretty.p-svg .state .svg {
+    top: 0;
+  }
+}
+

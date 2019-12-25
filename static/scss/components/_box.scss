@@ -1,0 +1,75 @@
+
+.box{
+  background: $c-light;
+  border-radius: $b-radius;
+  padding: 20px;
+}
+.form-group--two{
+   display: flex;
+   justify-content: space-between;
+ }
+.form-group--two div{
+  width: 48.5%;
+}
+.form-group--custom{
+  display: flex;
+  justify-content: space-between;
+}
+.form-group--custom div:first-child{
+  width: 68%;
+}
+.form-group--custom div:last-child{
+  width: 29%;
+}
+.form-group--three{
+  display: flex;
+  justify-content: space-between;
+  div{
+    width: 31%;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+}
+input,select,textarea{
+  border:1px solid #666666;
+  font-size: 15px;
+  height: 40px;
+}
+textarea{
+  min-height: 98px;
+}
+
+.form-group--four{
+  display: flex;
+  justify-content: space-between;
+}
+.form-group--four div{
+  width: 23%;
+}
+//nav-tabs bootstrap custom
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  background-color: #f2f2f2;
+  border: none;
+}
+.nav-tabs {
+  border-bottom: 1px solid #f2f2f2;
+}
+.nav-tabs .nav-link {
+  font-size: 15px;
+  padding: .3rem 1.5rem;
+}
+.tab-content--post{
+  background: #f2f2f2;
+  padding: 10px;
+}
+.table td, .table th {
+  max-width: 200px;
+}
+.form-control{
+  height: 40px;
+  background: #fff;
+}
