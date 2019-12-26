@@ -37,8 +37,10 @@
           </nav>
           <div class="header__account">
             <div id="status-user" v-if="$store.state.auth">
-              <span>Hi {{$store.state.auth.username}}</span> /
-              <span v-on:click="logout">Logout</span>
+              <NuxtLink to="/user">
+                <span>{{$store.state.auth.full_name}}</span>
+              </NuxtLink> /
+              <span v-on:click="logout">Thoát</span>
             </div>
             <div v-else>
               <span data-toggle="modal" data-target="#signInModal">Đăng ký</span> /
@@ -53,12 +55,12 @@
 </template>
 
 <script>
-const Cookie = process.client ? require('js-cookie') : undefined
+const Cookie = process.client ? require("js-cookie") : undefined;
 import { mapState } from "vuex";
 import { setCookie, getCookie } from "../common/helper";
 import { slateblue } from "color-name";
 export default {
-   middleware: 'notAuthenticated',
+  middleware: "notAuthenticated",
   data() {
     return {
       Islogin: false,
@@ -67,15 +69,15 @@ export default {
     };
   },
   methods: {
-     logout () {
-      Cookie.remove('auth')
-      this.$store.commit('SetAuth', null)
+    logout() {
+      Cookie.remove("auth");
+      this.$store.commit("SetAuth", null);
       this.$router.push("/");
-    },
+    }
   },
   computed: {
-    ...mapState(["islogin","user"])
-  },
+    ...mapState(["islogin", "user"])
+  }
 };
 </script>
 

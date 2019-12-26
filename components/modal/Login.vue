@@ -41,6 +41,7 @@
                 data-target="#forgetPassModal"
               >Quên mật khẩu ?</a>
             </div>
+            <label class="err">{{err}}</label>
             <div class="form-group">
               <button type="submit" class="btn btn--red btn--full">Đăng nhập</button>
             </div>
@@ -74,7 +75,7 @@
 </template>
 
 <script>
-const Cookie = process.client ? require('js-cookie') : undefined
+const Cookie = process.client ? require("js-cookie") : undefined;
 import axios from "axios";
 import { mapState } from "vuex";
 import { ValidateEmail, ValidateField } from "@/common/helper";
@@ -85,7 +86,8 @@ export default {
       email: "",
       errEmail: "",
       password: "",
-      errPassword: ""
+      errPassword: "",
+      err: ""
     };
   },
   methods: {
@@ -108,22 +110,23 @@ export default {
     async handleSubmit(e) {
       let auth = this;
       this.errEmail = ValidateEmail(this.email, 8);
-      this.errPassword = ValidateField(this.password, 8);
+      this.errPassword = ValidateField(this.password, 6);
       if (this.errEmail == "" && this.errPassword == "") {
-        
-        setTimeout(() => {
-          // we simulate the async request with timeout.
-          const auth = {
-            accessToken: "someStringGotFromApiServiceWithAjax",
-            username: this.email.replace(/(@gmail.com)/gm, ``)
-          };
+        let info = { email: this.email, password: this.password };
+        const { data } = await axios.post(
+          "https://member.tuoitre.vn/v1/member/login",
+          info
+        );
+        if (data.success) {
+          let auth = data.data;
           this.$store.commit("SetAuth", auth); // mutating to store for client rendering
           Cookie.set("auth", auth); // saving token in cookie for server rendering
           this.$router.push("/");
-        }, 1000);
-
-        this.IsShow = false;
-        $(".modal-backdrop").removeClass("modal-backdrop fade show");
+          this.IsShow = false;
+          $(".modal-backdrop").removeClass("modal-backdrop fade show");
+        } else {
+          data.data[0] ? (this.err = data.data[0]) : "Đã xảy ra lỗi";
+        }
       }
     }
   },
@@ -132,7 +135,7 @@ export default {
       this.errEmail = ValidateEmail(val);
     },
     password: function(val) {
-      this.errPassword = ValidateField(val, 8);
+      this.errPassword = ValidateField(val, 6);
     }
   },
   components: {}

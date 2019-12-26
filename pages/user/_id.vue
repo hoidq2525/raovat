@@ -1,6 +1,6 @@
 <template>
    <main>
-        <div class="container main">
+        <div class="container main" v-if="$store.state.auth">
             <div class="row">
                 <aside class="aside">
                     <div class="box-normal sticky-top">
@@ -8,10 +8,10 @@
                             <div class="user mb-3">
                                 <a class="inner-user" href="">
                                     <i class="icon-gold"></i>
-                                    <img src="img/avatar/11%201.png" alt="">
+                                    <img src="/img/avatar/11%201.png" alt="">
                                 </a>
                                 <div class="user__info">
-                                    <h1 class="user__name">Robert chen</h1>
+                                    <h1 class="user__name"> {{$store.state.auth.full_name}}</h1>
                                     <span class="level gold">Thành viên vàng</span>
                                     <p><span>100</span> điểm</p>
                                     <p><span>1,000</span> điểm thường</p>
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <input class="form-control" aria-label="" type="text" value="vanlam0201" disabled>
+                                        <input class="form-control" aria-label="" type="text" v-bind:value="$store.state.auth.full_name" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <input class="form-control" aria-label="" type="email" value="vanlam@gmail.com" disabled>
+                                        <input class="form-control" aria-label="" type="email" v-bind:value="$store.state.auth.email" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <input class="form-control" aria-label="" type="text" value="Văn Lâm Chi" disabled>
+                                        <input class="form-control" aria-label="" type="text" v-bind:value="$store.state.auth.full_name" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -100,10 +100,12 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group justify-content-start" style="line-height: 35px">
-                                        <div class="pretty p-default p-round p-fill mr-5"><input aria-label="" type="radio" name="gender" checked disabled>
+                                        <div class="pretty p-default p-round p-fill mr-5">
+                                            <input aria-label="" type="radio" name="gender"  v-bind:checked="$store.state.auth.gender==1" disabled>
                                             <div class="state"><label>Nam</label></div>
                                         </div>
-                                        <div class="pretty p-default p-round p-fill"><input aria-label="" type="radio" name="gender" disabled>
+                                        <div class="pretty p-default p-round p-fill" >
+                                            <input aria-label="" type="radio" name="gender"  v-bind:checked="$store.state.auth.gender==2" disabled>
                                             <div class="state"><label>Nữ</label></div>
                                         </div>
                                     </div>
@@ -157,7 +159,7 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <input class="form-control" aria-label="" type="text" value="60A , đường Hoàng Văn Thụ ..." disabled>
+                                        <input class="form-control" aria-label="" type="text" v-bind:value="$store.state.auth.address" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +169,7 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <input class="form-control" aria-label="" type="text" value="https://figma.com" disabled>
+                                        <input class="form-control" aria-label="" type="text" v-bind:value="$store.state.auth.website" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -215,6 +217,11 @@
 
 <script>
 export default {
+    data(){
+        return{
+
+        }
+    },
   middleware: 'authenticated'
 }
 </script>
